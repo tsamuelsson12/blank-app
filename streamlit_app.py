@@ -26,8 +26,9 @@ credentials = {
     }
 }
 
-# För-hasha lösenorden med Hashers hash_passwords
-stauth.Hasher.hash_passwords(credentials)
+# För-hasha lösenorden (observera att Hashers hash_passwords används här för att hash:a lösenorden)
+for user in credentials['usernames']:
+    credentials['usernames'][user]['password'] = stauth.Hasher([credentials['usernames'][user]['password']]).generate()[0]
 
 # Konfigurera autentisering med rätt credentials-struktur
 authenticator = stauth.Authenticate(
@@ -173,6 +174,7 @@ else:
 
                 """
                 )
+
 
         # Kursutveckling
         elif option == "Kursutveckling":
