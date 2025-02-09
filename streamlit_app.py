@@ -233,4 +233,8 @@ else:
 
             # Visa tabeller med snyggare format
             st.write("De 10 bästa kursdagarna:")
-            st.dataframe(best_days[['Date', 'Stock', 'Price', 'Percent
+            st.dataframe(best_days[['Date', 'Stock', 'Price', 'Percent Change']].style.format({'Price': '{:.2f}', 'Percent Change': '{:.2f}'}))
+
+            st.write("De 10 sämsta kursdagarna:")
+            st.dataframe(worst_days[['Date', 'Stock', 'Price', 'Percent Change']].style.format({'Price': '{:.2f}', 'Percent Change': '{:.2f}'}))
+
