@@ -4,21 +4,20 @@ import pandas as pd
 import matplotlib.pyplot as plt
 from datetime import datetime
 
+# Definiera användarnamn och lösenord
+usernames = ["user1", "user2"]
+passwords = ["password1", "password2"]
 
-# Definiera användarnamn och lösenord (du kan byta ut detta mot en extern källa om du vill)
-usernames = ["afv"]
-passwords = ["sdklgj45uy535g45sfwesfsdgt34"]
-
-# Skapa lösenordshash (det här görs en gång, och användas för att jämföra lösenord)
+# Skapa en lista av hashade lösenord
 hashed_passwords = stauth.Hasher(passwords).generate()
 
 # Konfigurera autentisering
 authenticator = stauth.Authenticate(
     usernames, 
     hashed_passwords, 
-    "my_app",  # Namnet på din app, eller något identifierande
+    "my_app",  # Namn på din app
     "cookie_name",  # Cookie-namn för autentisering
-    cookie_expiry_days=30  # Hur länge användaren hålls inloggad
+    cookie_expiry_days=30  # Utloppsdatum för cookie
 )
 
 # Använd autentisering
@@ -29,8 +28,7 @@ if not authentication_status:
     st.error("Felaktigt användarnamn eller lösenord")
 else:
     st.write(f"Välkommen {name}!")
-    # Här börjar din app-logik
-    # Skriv din befintliga app-kod nedan
+    # Din app-kod här
     # Exempel på att visa något efter inloggning:
     st.write("Din app kör här!")
 
