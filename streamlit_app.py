@@ -8,16 +8,33 @@ from datetime import datetime
 usernames = ["user1", "user2"]
 passwords = ["password1", "password2"]
 
-# Skapa en lista av hashade lösenord
-hashed_passwords = stauth.Hasher(passwords).generate()  # Skapa hasher av lösenord
+# Skapa en lista av hashade lösenord (använd hash_passwords för att förhasha lösenorden)
+credentials = {
+    'usernames': {
+        'user1': {
+            'email': 'user1@example.com',
+            'first_name': 'User',
+            'last_name': 'One',
+            'password': 'password1',  # Detta är fortfarande det okrypterade lösenordet
+        },
+        'user2': {
+            'email': 'user2@example.com',
+            'first_name': 'User',
+            'last_name': 'Two',
+            'password': 'password2',  # Detta är fortfarande det okrypterade lösenordet
+        }
+    }
+}
+
+# För-hasha lösenord
+stauth.Hasher.hash_passwords(credentials)
 
 # Konfigurera autentisering
 authenticator = stauth.Authenticate(
-    usernames, 
-    hashed_passwords, 
-    "my_app",  # Namn på din app
-    "cookie_name",  # Cookie-namn för autentisering
-    cookie_expiry_days=30  # Utloppsdatum för cookie
+    credentials['usernames'],
+    cookie_name="cookie_name",
+    cookie_key="cookie_key",
+    cookie_expiry_days=30
 )
 
 # Använd autentisering
