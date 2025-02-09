@@ -5,10 +5,10 @@ from datetime import datetime
 
 # Titel och konfiguration
 st.set_page_config(page_title='Aktiekursanalys', page_icon='📈')
-st.title("📈 Aktiekalkylatorn")
+st.title("📈 Aktiekalkylator")
 
 # Filuppladdning (multipla filer)
-uploaded_files = st.file_uploader("Ladda upp en eller flera CSV-filer", type=["csv"], accept_multiple_files=True)
+uploaded_files = st.file_uploader("Ladda upp en eller flera CSV-filer (endast Millistream)", type=["csv"], accept_multiple_files=True)
 
 if uploaded_files:
     dataframes = {}
@@ -118,11 +118,12 @@ if uploaded_files:
             # Lägga till en länk till Infogram och en förklarande text
             st.markdown(
                 """
-            Duplicera Infogram-mallen och ladda upp CSV-filen under data.
+            [Länk till Infogram-mallen (öppnas i ny flik)](https://infogram.com/app/#/edit/d93aa8ea-472b-42f5-a0f8-12e675221e71)
 
-            [Länk till Infogram-mallen](https://infogram.com/app/#/edit/d93aa8ea-472b-42f5-a0f8-12e675221e71)
+            Steg: 1) Duplicera Infogram-mallen. 2) Ladda upp CSV-filen under "Edit data"
+
             """
-)
+            )
 
     # Kursutveckling
     elif option == "Kursutveckling":
