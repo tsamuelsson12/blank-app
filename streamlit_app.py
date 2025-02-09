@@ -8,33 +8,33 @@ from datetime import datetime
 usernames = ["user1", "user2"]
 passwords = ["password1", "password2"]
 
-# Skapa en lista av hashade lösenord (använd hash_passwords för att förhasha lösenorden)
+# Skapa credentials-struktur enligt korrekt format
 credentials = {
     'usernames': {
         'user1': {
             'email': 'user1@example.com',
             'first_name': 'User',
             'last_name': 'One',
-            'password': 'password1',  # Detta är fortfarande det okrypterade lösenordet
+            'password': 'password1',  # Okrypterat lösenord
         },
         'user2': {
             'email': 'user2@example.com',
             'first_name': 'User',
             'last_name': 'Two',
-            'password': 'password2',  # Detta är fortfarande det okrypterade lösenordet
+            'password': 'password2',  # Okrypterat lösenord
         }
     }
 }
 
-# För-hasha lösenord
+# För-hasha lösenorden med Hashers hash_passwords
 stauth.Hasher.hash_passwords(credentials)
 
-# Konfigurera autentisering
+# Konfigurera autentisering med rätt credentials-struktur
 authenticator = stauth.Authenticate(
-    credentials['usernames'],
+    credentials['usernames'],  # Här skickar vi in rätt struktur
     cookie_name="cookie_name",
     cookie_key="cookie_key",
-    cookie_expiry_days=30
+    cookie_expiry_days=30  # Utloppsdatum för cookie
 )
 
 # Använd autentisering
@@ -233,7 +233,4 @@ else:
 
             # Visa tabeller med snyggare format
             st.write("De 10 bästa kursdagarna:")
-            st.dataframe(best_days[['Date', 'Stock', 'Price', 'Percent Change']].style.format({'Price': '{:.2f}', 'Percent Change': '{:.2f}'}))
-
-            st.write("De 10 sämsta kursdagarna:")
-            st.dataframe(worst_days[['Date', 'Stock', 'Price', 'Percent Change']].style.format({'Price': '{:.2f}', 'Percent Change': '{:.2f}'}))
+            st.dataframe(best_days[['Date', 'Stock', 'Price', 'Percent
