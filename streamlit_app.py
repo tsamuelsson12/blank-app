@@ -8,8 +8,8 @@ from datetime import datetime
 usernames = ["user1", "user2"]
 passwords = ["password1", "password2"]
 
-# Skapa en lista av hashade lösenord
-hashed_passwords = stauth.Hasher(passwords).generate()
+# Skapa en lista av hashade lösenord (se till att använda rätt metod här)
+hashed_passwords = stauth.Hasher(passwords).generate()  # Skapa hasher av lösenord
 
 # Konfigurera autentisering
 authenticator = stauth.Authenticate(
