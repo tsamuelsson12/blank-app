@@ -26,9 +26,8 @@ credentials = {
     }
 }
 
-# För-hasha lösenorden (observera att Hashers hash_passwords används här för att hash:a lösenorden)
-for user in credentials['usernames']:
-    credentials['usernames'][user]['password'] = stauth.Hasher([credentials['usernames'][user]['password']]).generate()[0]
+# För-hasha lösenorden
+hashed_passwords = stauth.Hasher(passwords).generate_hashes()
 
 # Konfigurera autentisering med rätt credentials-struktur
 authenticator = stauth.Authenticate(
@@ -37,6 +36,7 @@ authenticator = stauth.Authenticate(
     cookie_key="cookie_key",
     cookie_expiry_days=30  # Utloppsdatum för cookie
 )
+
 
 # Använd autentisering
 name, authentication_status = authenticator.login("Logga in", "main")
