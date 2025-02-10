@@ -5,7 +5,7 @@ from datetime import datetime
 
 # Titel och konfiguration
 st.set_page_config(page_title='Aktiekursanalys', page_icon='📈')
-st.title("📈 Aktiekalkylator")
+st.title("📈 Kursgrafkalkylatorn")
 
 # Filuppladdning (multipla filer)
 uploaded_files = st.file_uploader("Ladda upp en eller flera CSV-filer (endast Millistream)", type=["csv"], accept_multiple_files=True)
